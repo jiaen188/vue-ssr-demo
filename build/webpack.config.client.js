@@ -38,7 +38,7 @@ if (isDev) {
                 {
                     test: /\.styl/, // 开发环境的css代码可以内联
                     use: [
-                        'style-loader',
+                        'vue-style-loader',
                         'css-loader',
                         {
                             loader: 'postcss-loader',
@@ -74,7 +74,7 @@ if (isDev) {
                 {  // 生产环境的css需要外联
                     test: /\.styl/,
                     use: ExtractPlugin.extract({
-                        fallback: 'style-loader',
+                        fallback: 'vue-style-loader',
                         use: [
                             'css-loader',
                             {

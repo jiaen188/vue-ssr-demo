@@ -40,6 +40,13 @@ if (isDev) {
                     use: [
                         'vue-style-loader',
                         'css-loader',
+                        /* { // 在import的css中使用css module，但是所有的 import css都要使用css module，所以我们这边不使用了
+                            loader: 'css-loader',
+                            options: {
+                                module: true, // 开始css module
+                                localIdentName: isDev ? '[path]-[name]-[hash:base64:5]' : '[hash:base64:5]' // 样式名转化成和url-loader配置的效果类似
+                            }
+                        }, */
                         {
                             loader: 'postcss-loader',
                             options: {

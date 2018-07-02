@@ -60,15 +60,15 @@ if (isDev) {
     },
     devServer,
     plugins: defaultPlugins.concat([ // 热更新的相关插件
-      new webpack.HotModuleReplacementPlugin(),
-      new webpack.NoEmitOnErrorsPlugin()
+      new webpack.HotModuleReplacementPlugin()
+      // new webpack.NoEmitOnErrorsPlugin() // 已经取消了
     ])
   })
 } else {
   config = merge(baseConfig, {
     entry: { // 第三方的类库，一般比较稳定，不会和业务代码一样经常变动，所以要单独打包
       app: path.join(__dirname, '../client/index.js'),
-      vendor: ['vue']
+      // vendor: ['vue']
     },
     // 如果是hash，那么每次打包，各个带有hash的文件，他们的hash都是相同的，
     // 这样，每次生成环境打包后，vendor也是每次都变化了，每次都会重新加载，就没有单独打包的意义了
@@ -96,15 +96,22 @@ if (isDev) {
         }
       ]
     },
+    optimization: {
+      splitChunks: {
+        chunks: 'all'
+      },
+      runtimeChunk: true
+    },
     plugins: defaultPlugins.concat([
-      new ExtractPlugin('styles.[contentHash:8].css'), // css相关插件
-      new webpack.optimize.CommonsChunkPlugin({ // 第三方类库打包，单独打包到vendor.js中
+      new ExtractPlugin('styles.[contentHash:8].css') // css相关插件
+      // commonsChunk 在wbpack4中已经废弃
+      /* new webpack.optimize.CommonsChunkPlugin({ // 第三方类库打包，单独打包到vendor.js中
         name: 'vendor'
       }),
       // FIXME: 这边还是不大明白，再看看https://www.imooc.com/video/16410
       new webpack.optimize.CommonsChunkPlugin({
         name: 'runtime'
-      })
+      }) */
     ])
   })
 }

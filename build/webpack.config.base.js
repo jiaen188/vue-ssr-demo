@@ -4,6 +4,7 @@ const currentVueloaderOptions = require('./vue-loader.config')
 const isDev = process.env.NODE_ENV === 'development'
 
 const config = {
+  mode: process.env.NODE_ENV || 'production', // 只接收两个值 development || production
   target: 'web',
   entry: path.join(__dirname, '../client/index.js'),
   output: {

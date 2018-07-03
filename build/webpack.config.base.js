@@ -9,6 +9,7 @@ const config = {
   output: {
     filename: 'bundle.[hash:8].js',
     path: path.join(__dirname, '../dist')
+    // publicPath: '/public/' // 这边配置public后，在client中也要配置
   },
   module: {
     rules: [

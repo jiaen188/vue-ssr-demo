@@ -13,7 +13,9 @@ const defaultPlugins = [
       NODE_ENV: isDev ? '"development"' : '"production"'
     }
   }),
-  new HTMLPlugin()
+  new HTMLPlugin({
+    template: path.join(__dirname, './template.html')
+  })
 ]
 
 // devServer 在webpack2.0后才有的
@@ -23,6 +25,10 @@ const devServer = {
   host: '0.0.0.0', // 好处： 可以在别人电脑上通过ip访问，或者手机
   overlay: { // 编译的时候出现错误，就显示到网页上
     errors: true
+  },
+  historyApiFallback: {
+    index: '/index.html' // 配置了history路由后，要是用户直接刷新网页，或者更改路由访问会出现问题
+    // index: '/public/index.html' // 这边的public配置，是根据base配置中的publicPath来的
   },
   hot: true // 热更新，只更新修改的页面，不会刷新整个页面
   // open: true // 自动打开网页

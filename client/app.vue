@@ -2,7 +2,10 @@
     <div id="app">
         <div id="cover"></div>
         <todo-header></todo-header>
-        <todo></todo>
+        <!-- <todo></todo> -->
+        <router-link to="/app">app</router-link>
+        <router-link to="/login">login</router-link>
+        <router-view />
         <todo-footer></todo-footer>
     </div>
 </template>
@@ -22,13 +25,13 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-#app 
+#app
     position absolute
     left 0
     right 0
     top 0
     bottom 0
-    #cover 
+    #cover
         position absolute
         left 0
         top 0

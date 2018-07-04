@@ -14,7 +14,7 @@ export default () => {
     // base: '/base/',
     linkActiveClass: 'active-link',
     linkExactActiveClass: 'exact-active-link',
-    scrollBehavior (to, from , savePosition) { // 保存之前访问的页面滚动位置处理
+    scrollBehavior (to, from, savePosition) { // 保存之前访问的页面滚动位置处理
       if (savePosition) {
         return savePosition
       } else {

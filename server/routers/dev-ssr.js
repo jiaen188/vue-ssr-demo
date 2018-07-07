@@ -36,12 +36,15 @@ const handleSSR = async (ctx) => {
     'http://127.0.0.1:8000/vue-ssr-client-manifest.json'
   )
 
+  const clientManifest = clientManifestResp.data
+
   const template = fs.readdirSync(
     path.join(__dirname, '../server.template.ejs')
   )
 
   const render = VueServerRenderer
     .createBundleRenderer(bundle, {
-      inject: false
+      inject: false,
+      clientManifest
     })
 }

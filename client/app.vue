@@ -19,7 +19,9 @@
 <script>
 import {
   mapState,
-  mapGetters
+  mapGetters,
+  mapActions,
+  mapMutations
 } from 'vuex'
 import TodoHeader from './layout/TodoHeader.vue'
 import TodoFooter from './layout/footer.jsx'
@@ -33,10 +35,20 @@ export default {
   },
   mounted () {
     console.log(this.$store)
-    let i = 1
+    // this.$store.dispatch('updateCountAsync', {num: 5, time: 2000})
+    this.updateCountAsync({num: 5, time: 2000})
+    /* let i = 1
     setInterval(() => {
       this.$store.commit('updateCount', i++)
+    }, 1000) */
+    let i = 1
+    setInterval(() => {
+      this.updateCount(i++)
     }, 1000)
+  },
+  methods: {
+    ...mapActions(['updateCountAsync']),
+    ...mapMutations(['updateCount'])
   },
   computed: {
     ...mapState({

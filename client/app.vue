@@ -4,9 +4,6 @@
         <todo-header></todo-header>
         <p>{{counter}}</p>
         <p>{{fullName}}</p>
-        <p>{{textA}}</p>
-        <p>{{textAPlus}}</p>
-        <p>{{textC}}</p>
         <router-link to="/app/234">app234</router-link>
         <router-link to="/app/123">app123</router-link>
         <!-- <router-link :to="{name: 'app'}">app</router-link> -->
@@ -48,27 +45,18 @@ export default {
     setInterval(() => {
       this.updateCount(i++)
     }, 1000)
-    /* this.updateText(666) */ // state中加了个namespaced属性，各个module的mutation独立了
-    // this['a/updateText'](666)
-    this['a/add']()
   },
   methods: {
-    ...mapActions(['updateCountAsync', 'a/add']),
-    ...mapMutations(['updateCount', /* 'updateText', */ 'a/updateText'])
+    ...mapActions(['updateCountAsync']),
+    ...mapMutations(['updateCount'])
   },
   computed: {
-    /* textA () {
-      return this.$store.state.a.text
-    }, */
     ...mapState({
-      counter: 'count',
+      counter: 'count'
       // counter: (state) => state.count
-      textA: state => state.a.text,
-      textC: state => state.c.text
     }),
     ...mapGetters({
-      'fullName': 'fullName',
-      textAPlus: 'a/textPlus'
+      'fullName': 'fullName'
     })
     /* count () {
       return this.$store.state.count

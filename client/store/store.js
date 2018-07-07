@@ -24,37 +24,12 @@ export default () => {
     state: defaultState,
     mutations,
     getters,
-    actions,
-    modules: {
-      a: {
-        namespaced: true, // 这个属性加上后，本来每个module的mutation会放到全局的mutation下，现在只能在单个mutation下
-        state: {
-          text: 1
-        },
-        mutations: {
-          updateText (state, text) {
-            console.log('a.state', state)
-            state.text = text
-          }
-        },
-        getters: {
-          textPlus (state, getters, rootState) {
-            console.log('在模块a中拿到全局的state', rootState)
-            return state.text + 1
-          }
-        },
-        actions: {
-          add ({state, commit, rootState}) {
-            commit('updateText', rootState.count)
-          }
-        }
-      },
-      b: {
-        state: {
-          text: 2
-        }
+    actions
+    /* plugins: [
+      (store) => {
+        console.log('my plugin invoked')
       }
-    }
+    ] */
   })
 
   // 加入热更新功能

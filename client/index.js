@@ -13,6 +13,13 @@ Vue.use(Vuex)
 const router = createRouter()
 const store = createStore()
 
+// 动态注册一个模块
+store.registerModule('c', {
+  state: {
+    text: 3
+  }
+})
+
 router.beforeEach((to, from, next) => {
   console.log('before each invoked')
   next()
